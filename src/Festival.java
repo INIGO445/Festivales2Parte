@@ -6,7 +6,7 @@ import java.util.HashSet;
  * Un objeto de esta clase almacena los datos de un
  * festival.
  * Todo festival tiene un nombre, se celebra en un lugar
- * en una determinada fecha, dura una serie de días y
+ * en una determinada fecha, dura una serie de dï¿½as y
  * se engloba en un conjunto determinado de estilos
  *
  */
@@ -54,13 +54,12 @@ public class Festival {
     }
 
     /**
-     * devuelve el mes de celebración del festival, como
+     * devuelve el mes de celebraciï¿½n del festival, como
      * valor enumerado
      *
      */
     public Mes getMes() {
-        //TODO
-        
+        Mes miMes = fechaInicio.getMonth().;
         return null;
         
     }
@@ -73,9 +72,7 @@ public class Festival {
      */
     public boolean empiezaAntesQue(Festival otro) {
         //TODO
-        
-        return true;
-        
+        return this.fechaInicio.isBefore(otro.fechaInicio);
     }
 
     /**
@@ -86,9 +83,7 @@ public class Festival {
      */
     public boolean empiezaDespuesQue(Festival otro) {
         //TODO
-        
-        return true;
-        
+        return this.fechaInicio.isAfter(otro.fechaInicio);
     }
 
     /**
@@ -97,13 +92,11 @@ public class Festival {
      */
     public boolean haConcluido() {
         //TODO
-        
-        return true;
-
+        return this.fechaInicio.plusDays(duracion).isBefore(LocalDate.now());
     }
 
     /**
-     * Representación textual del festival, exactamente
+     * Representaciï¿½n textual del festival, exactamente
      * como se indica en el enunciado
      *
      */
@@ -116,7 +109,7 @@ public class Festival {
     }
 
     /**
-     * Código para probar la clase Festival
+     * Cï¿½digo para probar la clase Festival
      *
      */
     public static void main(String[] args) {
@@ -149,9 +142,9 @@ public class Festival {
         if (f1.empiezaAntesQue(f2)) {
             System.out.println(f1.getNombre() + " empieza antes que " + f2.getNombre());
         } else if (f1.empiezaDespuesQue(f2)) {
-            System.out.println(f1.getNombre() + " empieza después que " + f2.getNombre());
+            System.out.println(f1.getNombre() + " empieza despuï¿½s que " + f2.getNombre());
         } else {
-            System.out.println(f1.getNombre() + " empieza el mismo día que " + f2.getNombre());
+            System.out.println(f1.getNombre() + " empieza el mismo dï¿½a que " + f2.getNombre());
         }
 
         System.out.println("\nProbando haConcluido()\n");
