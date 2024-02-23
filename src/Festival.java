@@ -59,7 +59,7 @@ public class Festival {
      *
      */
     public Mes getMes() {
-        Mes miMes = fechaInicio.getMonth().;
+
         return null;
         
     }
