@@ -209,11 +209,11 @@ public class Festival {
         if (getDuracion() == 1) {
             if (haConcluido())
             {
-                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + "(concluido)";
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + " (concluido)";
             }
             else if (fechaInicio.equals(LocalDate.now()))
             {
-                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + "(ON)";
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + " (ON)";
             }
             else
             {
