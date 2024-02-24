@@ -59,9 +59,51 @@ public class Festival {
      *
      */
     public Mes getMes() {
+        Mes miMes = null;
+        switch (fechaInicio.getMonth())
+        {
+            case JANUARY:
+                miMes = Mes.ENERO;
+                break;
+            case FEBRUARY:
+                miMes = Mes.FEBRERO;
+                break;
+            case MARCH:
+                miMes = Mes.MARZO;
+                break;
+            case APRIL:
+                miMes = Mes.ABRIL;
+                break;
+            case MAY:
+                miMes = Mes.MAYO;
+                break;
+            case JUNE:
+                miMes = Mes.JUNIO;
+                break;
+            case JULY:
+                miMes = Mes.JULIO;
+                break;
+            case AUGUST:
+                miMes = Mes.AGOSTO;
+                break;
+            case SEPTEMBER:
+                miMes = Mes.SEPTIEMBRE;
+                break;
+            case OCTOBER:
+                miMes = Mes.OCTUBRE;
+                break;
+            case NOVEMBER:
+                miMes = Mes.NOVIEMBRE;
+                break;
+            case DECEMBER:
+                miMes = Mes.DICIEMBRE;
+                break;
+            default:
+                System.out.println("Error");
+                break;
 
-        return null;
-        
+        }
+        return miMes;
     }
 
     /**
