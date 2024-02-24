@@ -145,8 +145,67 @@ public class Festival {
     @Override
     public String toString() {
        //TODO
-        
-        return null;
+        String nombre2 = "";
+        String mes = "";
+        int descartes = 0;
+        for (int letra =0;letra<nombre.length();letra++)
+        {
+            if (letra == 0)
+            {
+                nombre2 = nombre2 + nombre.toUpperCase().charAt(letra);
+            }
+            else if (nombre.charAt(letra) == ' ')
+            {
+                descartes = letra + 1;
+                nombre2 = nombre2 + nombre.toUpperCase().charAt(descartes);
+            }
+            else if (letra != descartes)
+            {
+                nombre2 = nombre2 + nombre.charAt(letra);
+            }
+        }
+        switch (fechaInicio.getMonth())
+        {
+            case JANUARY:
+                mes = "ene"
+                break;
+            case FEBRUARY:
+                miMes = Mes.FEBRERO;
+                break;
+            case MARCH:
+                miMes = Mes.MARZO;
+                break;
+            case APRIL:
+                miMes = Mes.ABRIL;
+                break;
+            case MAY:
+                miMes = Mes.MAYO;
+                break;
+            case JUNE:
+                miMes = Mes.JUNIO;
+                break;
+            case JULY:
+                miMes = Mes.JULIO;
+                break;
+            case AUGUST:
+                miMes = Mes.AGOSTO;
+                break;
+            case SEPTEMBER:
+                miMes = Mes.SEPTIEMBRE;
+                break;
+            case OCTOBER:
+                miMes = Mes.OCTUBRE;
+                break;
+            case NOVEMBER:
+                miMes = Mes.NOVIEMBRE;
+                break;
+            case DECEMBER:
+                miMes = Mes.DICIEMBRE;
+                break;
+            default:
+                System.out.println("Error");
+                break;
+        return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + fechaInicio.getMonth() + " " + fechaInicio.getYear();
         
     }
 

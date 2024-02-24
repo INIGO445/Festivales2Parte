@@ -51,7 +51,7 @@ public class FestivalesIO {
         {
             if (pos == 0)
             {
-                String nombre1 = festival[pos];
+                String nombre1 = festival[pos].trim();
                 int descartes = 0;
                 for (int letra =0;letra<nombre1.length();letra++)
                 {
@@ -62,7 +62,8 @@ public class FestivalesIO {
                     else if (nombre1.charAt(letra) == ' ')
                     {
                         descartes = letra + 1;
-                        nombre2 = nombre2 + nombre1.toUpperCase().charAt(letra + 1);
+                        nombre2 = nombre2 + " ";
+                        nombre2 = nombre2 + nombre1.toUpperCase().charAt(descartes);
                     }
                     else if (letra != descartes)
                     {
@@ -72,24 +73,23 @@ public class FestivalesIO {
             }
             else if (pos == 1)
             {
-                lugar = festival[pos].toUpperCase();
+                lugar = festival[pos].toUpperCase().trim();
             }
             else if (pos == 2)
             {
-                fechaInicio = LocalDate.parse(festival[pos], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                fechaInicio = LocalDate.parse(festival[pos].trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             }
             else if (pos == 3)
             {
-                duracion = Integer.parseInt(festival[pos]);
+                duracion = Integer.parseInt(festival[pos].trim());
             }
             else
             {
-                Estilo miEstilo = Estilo.valueOf(festival[pos]);
+                Estilo miEstilo = Estilo.valueOf(festival[pos].toUpperCase().trim());
                 estilo.add(miEstilo);
             }
         }
-        Festival miFestival = new Festival(nombre2, lugar, fechaInicio, duracion, estilo);
-        return null;
+        return new Festival(nombre2, lugar, fechaInicio, duracion, estilo);
     }
     
    
