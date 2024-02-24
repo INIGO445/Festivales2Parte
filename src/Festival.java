@@ -146,7 +146,7 @@ public class Festival {
     public String toString() {
        //TODO
         String nombre2 = "";
-        String mes = "";
+        String mes1 = "";
         int descartes = 0;
         for (int letra =0;letra<nombre.length();letra++)
         {
@@ -157,6 +157,7 @@ public class Festival {
             else if (nombre.charAt(letra) == ' ')
             {
                 descartes = letra + 1;
+                nombre2 = nombre2 + " ";
                 nombre2 = nombre2 + nombre.toUpperCase().charAt(descartes);
             }
             else if (letra != descartes)
@@ -164,49 +165,119 @@ public class Festival {
                 nombre2 = nombre2 + nombre.charAt(letra);
             }
         }
-        switch (fechaInicio.getMonth())
-        {
+        switch (fechaInicio.getMonth()) {
             case JANUARY:
-                mes = "ene"
+                mes1 = "ene.";
                 break;
             case FEBRUARY:
-                miMes = Mes.FEBRERO;
+                mes1 = "feb.";
                 break;
             case MARCH:
-                miMes = Mes.MARZO;
+                mes1 = "mar.";
                 break;
             case APRIL:
-                miMes = Mes.ABRIL;
+                mes1 = "abr.";
                 break;
             case MAY:
-                miMes = Mes.MAYO;
+                mes1 = "may.";
                 break;
             case JUNE:
-                miMes = Mes.JUNIO;
+                mes1 = "jun.";
                 break;
             case JULY:
-                miMes = Mes.JULIO;
+                mes1 = "jul.";
                 break;
             case AUGUST:
-                miMes = Mes.AGOSTO;
+                mes1 = "ago.";
                 break;
             case SEPTEMBER:
-                miMes = Mes.SEPTIEMBRE;
+                mes1 = "sep.";
                 break;
             case OCTOBER:
-                miMes = Mes.OCTUBRE;
+                mes1 = "oct.";
                 break;
             case NOVEMBER:
-                miMes = Mes.NOVIEMBRE;
+                mes1 = "nov.";
                 break;
             case DECEMBER:
-                miMes = Mes.DICIEMBRE;
+                mes1 = "dic.";
                 break;
             default:
                 System.out.println("Error");
                 break;
-        return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + fechaInicio.getMonth() + " " + fechaInicio.getYear();
-        
+        }
+        if (getDuracion() == 1) {
+            if (haConcluido())
+            {
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + "(concluido)";
+            }
+            else if (fechaInicio.equals(LocalDate.now()))
+            {
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + "(ON)";
+            }
+            else
+            {
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + "Quedan " + (LocalDate.now().getDayOfYear() - fechaInicio.getDayOfYear()) + " dias";
+            }
+        }
+        else
+        {
+            String mes2 = "";
+            LocalDate nuevo = fechaInicio.plusDays(duracion);
+            switch (nuevo.getMonth()) {
+                case JANUARY:
+                    mes2 = " ene.";
+                    break;
+                case FEBRUARY:
+                    mes2 = " feb.";
+                    break;
+                case MARCH:
+                    mes2 = " mar.";
+                    break;
+                case APRIL:
+                    mes2 = " abr.";
+                    break;
+                case MAY:
+                    mes2 = " may.";
+                    break;
+                case JUNE:
+                    mes2 = " jun.";
+                    break;
+                case JULY:
+                    mes2 = " jul.";
+                    break;
+                case AUGUST:
+                    mes2 = " ago.";
+                    break;
+                case SEPTEMBER:
+                    mes2 = " sep.";
+                    break;
+                case OCTOBER:
+                    mes2 = " oct.";
+                    break;
+                case NOVEMBER:
+                    mes2 = " nov.";
+                    break;
+                case DECEMBER:
+                    mes2 = " dic.";
+                    break;
+                default:
+                    System.out.println("Error");
+                    break;
+            }
+            if (haConcluido())
+            {
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (concluido)";
+            }
+            else if (fechaInicio.equals(LocalDate.now()))
+            {
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (ON)";
+            }
+            else
+            {
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " Quedan: " + (LocalDate.now().getDayOfYear() - fechaInicio.getDayOfYear()) + " dias.";
+            }
+        }
     }
 
     /**
