@@ -209,15 +209,15 @@ public class Festival {
         if (getDuracion() == 1) {
             if (haConcluido())
             {
-                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + " (concluido)";
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + " (concluido)" + "\n------------------------------------------------------------";
             }
             else if (fechaInicio.equals(LocalDate.now()))
             {
-                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + " (ON)";
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + " (ON)" + "\n------------------------------------------------------------";
             }
             else
             {
-                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + "Quedan " + (LocalDate.now().getDayOfYear() - fechaInicio.getDayOfYear()) + " dias";
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.getYear() + "Quedan " + (LocalDate.now().getDayOfYear() - fechaInicio.getDayOfYear()) + " dias" + "\n------------------------------------------------------------";
             }
         }
         else
@@ -267,15 +267,15 @@ public class Festival {
             }
             if (haConcluido())
             {
-                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (concluido)";
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (concluido)" + "\n------------------------------------------------------------";
             }
             else if (fechaInicio.equals(LocalDate.now()))
             {
-                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (ON)";
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (ON)" + "\n------------------------------------------------------------";
             }
             else
             {
-                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " Quedan: " + (LocalDate.now().getDayOfYear() - fechaInicio.getDayOfYear()) + " dias.";
+                return nombre2 + "\t\t\t" + getEstilos() + "\n" + lugar.toUpperCase() + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " Quedan: " + (LocalDate.now().getDayOfYear() - fechaInicio.getDayOfYear()) + " dias." + "\n------------------------------------------------------------";
             }
         }
     }
