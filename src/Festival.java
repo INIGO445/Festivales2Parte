@@ -248,9 +248,9 @@ public class Festival {
             }
             if (haConcluido())
             {
-                return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.plusDays(duracion).getYear() + " (concluido)" + "\n------------------------------------------------------------";
+                return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (concluido)" + "\n------------------------------------------------------------";
             }
-            else if (fechaInicio.equals(LocalDate.now()))
+            else if (fechaInicio.isBefore(LocalDate.now()) && fechaInicio.plusDays(duracion).isAfter(LocalDate.now()) || fechaInicio.equals(LocalDate.now()) || fechaInicio.plusDays(duracion).equals(LocalDate.now()))
             {
                 return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.plusDays(duracion).getYear() + " (ON)" + "\n------------------------------------------------------------";
             }
