@@ -248,15 +248,15 @@ public class Festival {
             }
             if (haConcluido())
             {
-                return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (concluido)" + "\n------------------------------------------------------------";
+                return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.plusDays(duracion).getYear() + " (concluido)" + "\n------------------------------------------------------------";
             }
             else if (fechaInicio.equals(LocalDate.now()))
             {
-                return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " (ON)" + "\n------------------------------------------------------------";
+                return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.plusDays(duracion).getYear() + " (ON)" + "\n------------------------------------------------------------";
             }
             else
             {
-                return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.getYear() + " Quedan: " + (LocalDate.now().getDayOfYear() - fechaInicio.getDayOfYear()) + " dias." + "\n------------------------------------------------------------";
+                return nombre + "\t\t\t" + getEstilos() + "\n" + lugar + "\n" + fechaInicio.getDayOfMonth() + " " + mes1 + " - " + fechaInicio.plusDays(duracion).getDayOfMonth() + mes2 + " " + fechaInicio.plusDays(duracion).getYear() + " Quedan: " + (LocalDate.now().getDayOfYear() - fechaInicio.getDayOfYear()) + " dias." + "\n------------------------------------------------------------";
             }
         }
     }
