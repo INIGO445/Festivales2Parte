@@ -63,9 +63,13 @@ public class AgendaFestivales {
     private int obtenerPosicionDeInsercion(ArrayList<Festival> festivales,
                                            Festival festival) {
        //TODO
-        TreeSet<Festival> ordenar = new TreeSet<>(festivales);
-        ordenar.add(festival);
-        return festivales.indexOf(festival);
+        int anadir = 0;
+        for (Festival festivale : festivales) {
+            if (festivale.getNombre().compareTo(festival.getNombre()) > 0) {
+                anadir++;
+            }
+        }
+        return anadir;
         
     }
 
@@ -108,33 +112,29 @@ public class AgendaFestivales {
      *
      * Identifica el tipo exacto del valor de retorno
      */
-    public  Map   festivalesPorEstilo() {
+    public  TreeMap<Estilo,TreeSet<String>>   festivalesPorEstilo() {
        //TODO
-        Map<Estilo,TreeSet<Festival>> agrupa = new HashMap<>();
+        TreeMap<Estilo,TreeSet<String>> agrupa = new TreeMap<>();
         Iterator<Mes> b = agenda.keySet().iterator();
         ArrayList<Festival> miFestival = new ArrayList<>();
         HashSet<Estilo> miEstilo = new HashSet<>();
-        TreeSet<Festival> anadir = new TreeSet<>();
+        TreeSet<String> anadir = new TreeSet<>();
         while (b.hasNext())
         {
             for (int q = 0;q<agenda.get(b.next()).size();q++)
             {
                 Festival z = agenda.get(b.next()).get(q);
                 miFestival.add(z);
-                miEstilo.addAll(miFestival.get(q).getEstilos());
+                miEstilo.addAll(agenda.get(b.next()).get(q).getEstilos());
             }
             Iterator<Estilo> d = miEstilo.iterator();
             while (d.hasNext())
             {
-                for (int pos =0;pos<miFestival.size();pos++)
-                {
-                    if (miFestival.get(pos).getEstilos().contains(d.next()) && agrupa.containsKey(d.next()))
-                    {
-                        agrupa.get(d.next()).add(miFestival.get(pos));
-                    }
-                    else if (!agrupa.containsKey(d.next()))
-                    {
-                        anadir.add(miFestival.get(pos));
+                for (Festival festival : miFestival) {
+                    if (festival.getEstilos().contains(d.next()) && agrupa.containsKey(d.next())) {
+                        agrupa.get(d.next()).add(festival.getNombre());
+                    } else if (!agrupa.containsKey(d.next())) {
+                        anadir.add(festival.getNombre());
                         agrupa.put(d.next(), anadir);
                     }
                 }
