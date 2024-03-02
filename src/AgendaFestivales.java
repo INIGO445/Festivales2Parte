@@ -1,9 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 
 /**
@@ -43,7 +39,17 @@ public class AgendaFestivales {
      */
     public void addFestival(Festival festival) {
         //TODO
-        
+        ArrayList<Festival> f = new ArrayList<>();
+        Mes m = festival.getMes();
+        if (!this.agenda.containsKey(festival.getMes()))
+        {
+            f.add(festival);
+            agenda.put(m, f);
+        }
+        else
+        {
+            agenda.get(m).add(obtenerPosicionDeInsercion(f, festival), festival);
+        }
         
     }
 
@@ -57,8 +63,9 @@ public class AgendaFestivales {
     private int obtenerPosicionDeInsercion(ArrayList<Festival> festivales,
                                            Festival festival) {
        //TODO
-        
-        return 0;
+        TreeSet<Festival> ordenar = new TreeSet<>(festivales);
+        ordenar.add(festival);
+        return festivales.indexOf(festival);
         
     }
 
@@ -82,8 +89,14 @@ public class AgendaFestivales {
      */
     public int festivalesEnMes(Mes mes) {
        //TODO
-        
-        return 0;
+        if (!agenda.containsKey(mes))
+        {
+            return -1;
+        }
+        else
+        {
+            return agenda.get(mes).size();
+        }
     }
 
     /**
@@ -97,10 +110,26 @@ public class AgendaFestivales {
      */
     public  Map   festivalesPorEstilo() {
        //TODO
+        Map<Estilo,TreeSet<Festival>> agrupa = new HashMap<>();
+        Iterator<Mes> b = agenda.keySet().iterator();
+        ArrayList<Festival> miFestival = new ArrayList<>();
+        miFestival.add(agenda.get(b.next()).get(0));
+        Iterator<Estilo> d = miFestival.get(0).getEstilos().iterator();
+        HashSet<Estilo> miEstilo = new HashSet<>();
+        //miEstilo.
+        while (b.hasNext())
+        {
+            if (agrupa.containsKey(Estilo.BLUES))
+            {
+                //agrupa.get(Estilo.BLUES).add();
+            }
+            for (int pos =0;pos<agenda.get(b.next()).get(pos).getEstilos().size();pos++)
+            {
+                miEstilo.addAll(agenda.get(b.next()).get(pos).getEstilos());
+            }
+        }
 
-         
-
-        return null;
+        return agrupa;
     }
 
     /**
@@ -115,7 +144,30 @@ public class AgendaFestivales {
      */
     public int cancelarFestivales(HashSet<String> lugares, Mes mes) {
        //TODO
-        
-        return 0;
+        int lugBor = 0;
+        if (!agenda.containsKey(mes))
+        {
+            return -1;
+        }
+        else
+        {
+            Iterator<String> lu = lugares.iterator();
+            for (int pos1 = 0; pos1 < agenda.get(mes).size(); pos1++)
+            {
+                while (lu.hasNext())
+                {
+                    if (Objects.equals(agenda.get(mes).get(pos1).getLugar(), lu.next()))
+                    {
+                        lugBor++;
+                        agenda.remove(mes).remove(agenda.get(mes).get(pos1));
+                    }
+                }
+                if (agenda.get(mes).isEmpty())
+                {
+                    agenda.remove(mes);
+                }
+            }
+        }
+        return lugBor;
     }
 }
