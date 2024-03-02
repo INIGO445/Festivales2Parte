@@ -115,27 +115,30 @@ public class AgendaFestivales {
     public  TreeMap<Estilo,TreeSet<String>>   festivalesPorEstilo() {
        //TODO
         TreeMap<Estilo,TreeSet<String>> agrupa = new TreeMap<>();
-        Iterator<Mes> b = agenda.keySet().iterator();
         ArrayList<Festival> miFestival = new ArrayList<>();
         HashSet<Estilo> miEstilo = new HashSet<>();
-        TreeSet<String> anadir = new TreeSet<>();
+        Iterator<Mes> b = agenda.keySet().iterator();
         while (b.hasNext())
         {
             for (int q = 0;q<agenda.get(b.next()).size();q++)
             {
-                Festival z = agenda.get(b.next()).get(q);
+                Festival z = agenda.get(b.next()).getFirst();//
                 miFestival.add(z);
-                miEstilo.addAll(agenda.get(b.next()).get(q).getEstilos());
+                miEstilo.addAll(agenda.get(b.next()).getFirst().getEstilos());
             }
-            Iterator<Estilo> d = miEstilo.iterator();
-            while (d.hasNext())
-            {
-                for (Festival festival : miFestival) {
-                    if (festival.getEstilos().contains(d.next()) && agrupa.containsKey(d.next())) {
-                        agrupa.get(d.next()).add(festival.getNombre());
-                    } else if (!agrupa.containsKey(d.next())) {
-                        anadir.add(festival.getNombre());
-                        agrupa.put(d.next(), anadir);
+
+            for (int pos = 0;pos<miFestival.size();pos++) {
+                for (int x = 0;x<miFestival.get(pos).getEstilos().size();x++) {
+                    Iterator<Estilo> d = miEstilo.iterator();
+                    while (d.hasNext()) {
+                        Estilo estiloActual = d.next();
+                        if (miFestival.get(pos).getEstilos().contains(estiloActual) && agrupa.containsKey(estiloActual)) {
+                            agrupa.get(estiloActual).add(miFestival.get(pos).getNombre());
+                        } else if (!agrupa.containsKey(estiloActual) && miFestival.get(pos).getEstilos().contains(estiloActual)) {
+                            TreeSet<String> anadir = new TreeSet<>();
+                            anadir.add(miFestival.get(pos).getNombre());
+                            agrupa.put(estiloActual, anadir);
+                        }
                     }
                 }
             }
@@ -162,21 +165,22 @@ public class AgendaFestivales {
         }
         else
         {
-            Iterator<String> lu = lugares.iterator();
-            for (int pos1 = 0; pos1 < agenda.get(mes).size(); pos1++)
-            {
-                while (lu.hasNext())
-                {
-                    if (Objects.equals(agenda.get(mes).get(pos1).getLugar(), lu.next()))
-                    {
+            for (int pos1 = 0; pos1 < agenda.get(mes).size(); pos1++) {
+                String lugarActual = agenda.get(mes).get(pos1).getLugar();
+
+                Iterator<String> lu = lugares.iterator();
+                while (lu.hasNext()) {
+                    String lugar = lu.next();
+                    if (Objects.equals(lugarActual, lugar)) {
                         lugBor++;
-                        agenda.remove(mes).remove(agenda.get(mes).get(pos1));
+                        lu.remove();
+                        agenda.get(mes).remove(pos1);
+                        pos1--;
                     }
                 }
-                if (agenda.get(mes).isEmpty())
-                {
-                    agenda.remove(mes);
-                }
+            }
+            if (agenda.get(mes).isEmpty()) {
+                agenda.remove(mes);
             }
         }
         return lugBor;
