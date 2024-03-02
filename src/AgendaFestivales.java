@@ -113,22 +113,33 @@ public class AgendaFestivales {
         Map<Estilo,TreeSet<Festival>> agrupa = new HashMap<>();
         Iterator<Mes> b = agenda.keySet().iterator();
         ArrayList<Festival> miFestival = new ArrayList<>();
-        miFestival.add(agenda.get(b.next()).get(0));
-        Iterator<Estilo> d = miFestival.get(0).getEstilos().iterator();
         HashSet<Estilo> miEstilo = new HashSet<>();
-        //miEstilo.
+        TreeSet<Festival> anadir = new TreeSet<>();
         while (b.hasNext())
         {
-            if (agrupa.containsKey(Estilo.BLUES))
+            for (int q = 0;q<agenda.get(b.next()).size();q++)
             {
-                //agrupa.get(Estilo.BLUES).add();
+                Festival z = agenda.get(b.next()).get(q);
+                miFestival.add(z);
+                miEstilo.addAll(miFestival.get(q).getEstilos());
             }
-            for (int pos =0;pos<agenda.get(b.next()).get(pos).getEstilos().size();pos++)
+            Iterator<Estilo> d = miEstilo.iterator();
+            while (d.hasNext())
             {
-                miEstilo.addAll(agenda.get(b.next()).get(pos).getEstilos());
+                for (int pos =0;pos<miFestival.size();pos++)
+                {
+                    if (miFestival.get(pos).getEstilos().contains(d.next()) && agrupa.containsKey(d.next()))
+                    {
+                        agrupa.get(d.next()).add(miFestival.get(pos));
+                    }
+                    else if (!agrupa.containsKey(d.next()))
+                    {
+                        anadir.add(miFestival.get(pos));
+                        agrupa.put(d.next(), anadir);
+                    }
+                }
             }
         }
-
         return agrupa;
     }
 
